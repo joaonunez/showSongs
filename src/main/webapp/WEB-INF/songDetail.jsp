@@ -15,6 +15,11 @@
     <p><strong>Created At:</strong> ${song.createdAt}</p>
     <p><strong>Updated At:</strong> ${song.updatedAt}</p>
 	<a href="/songs/form/edit/${song.id}">
+	<form action="/songs/delete/${song.id}" method="post" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta canción?');">
+    <input type="hidden" name="_method" value="delete" />
+    <input type="submit" value="Delete Song" />
+</form>
+	
     <button>Edit Song</button>
 </a>
 	
