@@ -22,4 +22,8 @@ public class SongService {
         Optional<Song> song = songRepository.findById(id);
         return song.orElse(null);
     }
+    public Song addSong(Song song) {
+        return songRepository.save(song);
+    }
+
 }
