@@ -25,5 +25,8 @@ public class SongService {
     public Song addSong(Song song) {
         return songRepository.save(song);
     }
+    public Song updateSong(Song song) {
+        return songRepository.save(song);
+    }
 
 }
