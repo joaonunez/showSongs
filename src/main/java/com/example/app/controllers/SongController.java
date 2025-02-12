@@ -56,7 +56,7 @@ public class SongController {
 
 
     @PostMapping("/songs/process/add")
-    public String procesarAgregarCancion(@Valid @ModelAttribute("song") Song song, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String processAddSong(@Valid @ModelAttribute("song") Song song, BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             return "addSong.jsp";
         }

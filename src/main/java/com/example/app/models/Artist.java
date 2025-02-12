@@ -16,6 +16,7 @@ import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "artist")
@@ -24,7 +25,10 @@ public class Artist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @Size(min = 3, message = "El Nombre debe tener al menos 3 caracteres")
     private String firstName;
+    
+    
     private String lastName;
     
     @Column(columnDefinition = "TEXT")

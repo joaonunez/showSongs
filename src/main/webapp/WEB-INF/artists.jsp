@@ -5,7 +5,10 @@
     <title>Song List</title>
 </head>
 <body>
-    <h1>Song List</h1>
+<a href="/songs">
+    <button>View songs</button>
+</a>
+    <h1>Artist List</h1>
     <table border="1">
         <tr>
             <th>Title</th>

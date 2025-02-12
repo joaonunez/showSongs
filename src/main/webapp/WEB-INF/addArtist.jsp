@@ -7,23 +7,12 @@
 </head>
 <body>
     <h1>ADD SONG</h1>
-    <form:form action="/songs/process/add" modelAttribute="song" method="post">
-        <p>Título: <form:input path="title"/><form:errors path="title"/></p>
-       	<!-- Select para elegir el artista -->
-        <p>Artista: 
-            <form:select path="artist.id">
-                <c:forEach var="artist" items="${artists}">
-    		<option value="${artist.id}">${artist.firstName} ${artist.lastName}</option>
-				</c:forEach>
-
-            </form:select>
-        </p>
-
-        <p>Álbum: <form:input path="album"/><form:errors path="album"/></p>
-        <p>Género: <form:input path="gender"/><form:errors path="gender"/></p>
-        <p>Idioma: <form:input path="language"/><form:errors path="language"/></p>
-        <input type="submit" value="Add Song"/>
+    <form:form action="/artists/process/add" modelAttribute="artist" method="post">
+        <p>Name: <form:input path="firstName"/><form:errors path="firstName"/></p>
+		<p>Last Name: <form:input path="lastName"/><form:errors path="lastName"/></p>
+        <p>Biography: <form:input path="biography"/><form:errors path="biography"/></p>
+        <input type="submit" value="Add Artist"/>
     </form:form>
-    <a href="/songs">Volver a lista de canciones</a>
+    <a href="/artists">Volver a lista de artistas</a>
 </body>
 </html>
