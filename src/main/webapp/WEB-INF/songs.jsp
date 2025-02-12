@@ -5,6 +5,9 @@
     <title>Song List</title>
 </head>
 <body>
+<a href="/artists">
+    <button>View Artists</button>
+</a>
     <h1>Song List</h1>
     <table border="1">
         <tr>
@@ -21,7 +24,7 @@
         </c:forEach>
     </table>
     <a href="/songs/form/add">
-    <button>Agregar Canción</button>
+    <button>Agregar Canciï¿½n</button>
 </a>
     
 </body>
