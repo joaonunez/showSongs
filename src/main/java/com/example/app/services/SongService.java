@@ -3,7 +3,6 @@ package com.example.app.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.app.models.Song;
@@ -11,8 +10,12 @@ import com.example.app.repositories.SongRepository;
 
 @Service
 public class SongService {
-    @Autowired
-    private SongRepository songRepository;
+    private final SongRepository songRepository;
+    
+    public SongService(SongRepository songRepository) {
+        this.songRepository = songRepository;
+    }
+
 
     public List<Song> getAllSongs() {
         return songRepository.findAll();
@@ -28,6 +31,7 @@ public class SongService {
     public Song updateSong(Song song) {
         return songRepository.save(song);
     }
+    
     public void deleteSong(Long id) {
         songRepository.deleteById(id);
     }

@@ -9,19 +9,17 @@
     <table border="1">
         <tr>
             <th>Title</th>
-            <th>Artist</th>
             <th>Detail</th>
         </tr>
-        <c:forEach var="song" items="${songs}">
+        <c:forEach var="artist" items="${artists}">
             <tr>
-                <td>${song.title}</td>
-                <td>${song.artist.firstName} ${song.artist.lastName}</td>
-                <td><a href="/songs/detail/${song.id}">Detail</a></td>
+                <td>${artist.firstName} ${artist.lastName}</td>
+                <td><a href="/artists/detail/${artist.id}">Detail</a></td>
             </tr>
         </c:forEach>
     </table>
-    <a href="/songs/form/add">
-    <button>Agregar Canción</button>
+    <a href="/artists/form/add">
+    <button>Agregar Artista</button>
 </a>
     
 </body>

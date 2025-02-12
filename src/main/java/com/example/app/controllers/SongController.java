@@ -2,7 +2,6 @@ package com.example.app.controllers;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.app.models.Song;
+import com.example.app.services.ArtistService;
 import com.example.app.services.SongService;
 
 import jakarta.validation.Valid;
@@ -22,9 +22,14 @@ import jakarta.validation.Valid;
 @Controller
 public class SongController {
 
-    @Autowired
-    private SongService songService;
-
+	private final SongService songService;
+    private final ArtistService artistService;
+    
+    public SongController(SongService songService, ArtistService artistService) {
+        this.songService = songService;
+        this.artistService = artistService;
+    }
+    
     @GetMapping("/songs")
     public String showSongs(Model model) {
         List<Song> songs = songService.getAllSongs();
@@ -44,9 +49,11 @@ public class SongController {
     
     @GetMapping("/songs/form/add")
     public String formAddSong(Model model) {
-        model.addAttribute("song", new Song());
+        model.addAttribute("song", new Song()); // Inicializa una nueva canción
+        model.addAttribute("artists", artistService.getAllArtists()); // Pasa la lista de artistas al JSP
         return "addSong.jsp";
     }
+
 
     @PostMapping("/songs/process/add")
     public String procesarAgregarCancion(@Valid @ModelAttribute("song") Song song, BindingResult result, RedirectAttributes redirectAttributes) {

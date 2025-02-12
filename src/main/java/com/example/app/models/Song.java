@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -26,8 +28,9 @@ public class Song {
 	@Size(min = 5, message = "El título debe tener al menos 5 caracteres")
 	private String title;
 	
-	@Size(min = 3, message = "El artista debe tener al menos 3 caracteres")
-	private String artist;
+	@ManyToOne
+	@JoinColumn(name = "artist_id")
+	private Artist artist;
 	
 	@Size(min = 3, message = "El álbum debe tener al menos 3 caracteres")
 	private String album;
@@ -68,11 +71,11 @@ public class Song {
 		this.title = title;
 	}
 
-	public String getArtist() {
+	public Artist getArtist() {
 		return artist;
 	}
 
-	public void setArtist(String artist) {
+	public void setArtist(Artist artist) {
 		this.artist = artist;
 	}
 

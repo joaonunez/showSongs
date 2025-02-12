@@ -8,7 +8,7 @@
 <body>
     <h1>Song Details</h1>
     <p><strong>Title:</strong> ${song.title}</p>
-    <p><strong>Artist:</strong> ${song.artist}</p>
+    <p><strong>Artist:</strong> ${song.artist.firstName} ${song.artist.lastName}</p>
     <p><strong>Album:</strong> ${song.album}</p>
     <p><strong>Genre:</strong> ${song.gender}</p>
     <p><strong>Language:</strong> ${song.language}</p>
