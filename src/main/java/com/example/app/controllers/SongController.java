@@ -29,7 +29,12 @@ public class SongController {
         this.songService = songService;
         this.artistService = artistService;
     }
-    
+
+    @GetMapping("/")
+    public String home(){
+        return "index.jsp";
+    }
+
     @GetMapping("/songs")
     public String showSongs(Model model) {
         List<Song> songs = songService.getAllSongs();

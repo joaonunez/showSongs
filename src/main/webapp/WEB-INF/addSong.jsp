@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Agregar Canción</title>
+    <title>Agregar Canciï¿½n</title>
 </head>
 <body>
     <h1>ADD SONG</h1>
     <form:form action="/songs/process/add" modelAttribute="song" method="post">
-        <p>Título: <form:input path="title"/><form:errors path="title"/></p>
+        <p>Title: <form:input path="title"/><form:errors path="title"/></p>
        	<!-- Select para elegir el artista -->
-        <p>Artista: 
+        <p>Select Artist: 
             <form:select path="artist.id">
                 <c:forEach var="artist" items="${artists}">
     		<option value="${artist.id}">${artist.firstName} ${artist.lastName}</option>
@@ -19,11 +19,11 @@
             </form:select>
         </p>
 
-        <p>Álbum: <form:input path="album"/><form:errors path="album"/></p>
-        <p>Género: <form:input path="gender"/><form:errors path="gender"/></p>
-        <p>Idioma: <form:input path="language"/><form:errors path="language"/></p>
+        <p>Album: <form:input path="album"/><form:errors path="album"/></p>
+        <p>Genre: <form:input path="gender"/><form:errors path="gender"/></p>
+        <p>Language: <form:input path="language"/><form:errors path="language"/></p>
         <input type="submit" value="Add Song"/>
     </form:form>
-    <a href="/songs">Volver a lista de canciones</a>
+    <a href="/songs">Back to songs list</a>
 </body>
 </html>

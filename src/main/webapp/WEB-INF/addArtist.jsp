@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Agregar Canción</title>
+    <title>ADD ARTIST</title>
 </head>
 <body>
     <h1>ADD SONG</h1>
@@ -13,6 +13,6 @@
         <p>Biography: <form:input path="biography"/><form:errors path="biography"/></p>
         <input type="submit" value="Add Artist"/>
     </form:form>
-    <a href="/artists">Volver a lista de artistas</a>
+    <a href="/artists">Back to artist list</a>
 </body>
 </html>

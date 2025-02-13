@@ -22,7 +22,7 @@
         </c:forEach>
     </table>
     <a href="/artists/form/add">
-    <button>Agregar Artista</button>
+    <button>Add Artist</button>
 </a>
     
 </body>
