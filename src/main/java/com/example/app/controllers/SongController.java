@@ -2,6 +2,7 @@ package com.example.app.controllers;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.app.models.Song;
@@ -36,9 +38,18 @@ public class SongController {
     }
 
     @GetMapping("/songs")
-    public String showSongs(Model model) {
-        List<Song> songs = songService.getAllSongs();
-        model.addAttribute("songs", songs);
+    public String showSongs(
+        Model model,
+        @RequestParam(defaultValue = "0")int page,
+        @RequestParam(defaultValue = "5") int size
+        
+    ) {
+        Page<Song> songsPage = songService.getSongsPaginated(page, size);
+        model.addAttribute("songsPage", songsPage);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", songsPage.getTotalPages());
+
+
         return "songs.jsp";
     }
 
@@ -55,7 +66,7 @@ public class SongController {
     @GetMapping("/songs/form/add")
     public String formAddSong(Model model) {
         model.addAttribute("song", new Song()); // Inicializa una nueva canción
-        model.addAttribute("artists", artistService.getAllArtists()); // Pasa la lista de artistas al JSP
+        model.addAttribute("artists", artistService.getAllArtistsForComboBox()); // Pasa la lista de artistas al JSP
         return "addSong.jsp";
     }
 

@@ -17,7 +17,7 @@
             <th>Artist</th>
             <th>Detail</th>
         </tr>
-        <c:forEach var="song" items="${songs}">
+        <c:forEach var="song" items="${songsPage.content}">
             <tr>
                 <td>${song.title}</td>
                 <td>${song.artist.firstName} ${song.artist.lastName}</td>
@@ -25,6 +25,17 @@
             </tr>
         </c:forEach>
     </table>
+    <div>
+        <c:if test="${currentPage > 0}">
+            <a href="/songs?page=${currentPage - 1}&size=5">Previous</a>
+        </c:if>
+
+        Page ${currentPage + 1} of ${totalPages}
+
+        <c:if test="${currentPage + 1 < totalPages}">
+            <a href="/songs?page=${currentPage + 1}&size=5">Next</a>
+        </c:if>
+    </div>
     <a href="/songs/form/add">
     <button>Add Song</button>
 </a>

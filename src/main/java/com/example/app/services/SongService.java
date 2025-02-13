@@ -3,6 +3,8 @@ package com.example.app.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.example.app.models.Song;
@@ -16,10 +18,15 @@ public class SongService {
         this.songRepository = songRepository;
     }
 
-
+    //primero
     public List<Song> getAllSongs() {
-        return songRepository.findAll();
+        return songRepository.findAllByOrderByTitleAsc();
     }
+    //segundo creado para paginado
+    public Page<Song> getSongsPaginated(int page, int size){
+        return songRepository.findAllByOrderByTitleAsc(PageRequest.of(page, size));
+    }
+
 
     public Song getSongById(Long id) {
         Optional<Song> song = songRepository.findById(id);
@@ -35,5 +42,6 @@ public class SongService {
     public void deleteSong(Long id) {
         songRepository.deleteById(id);
     }
+    
 
 }

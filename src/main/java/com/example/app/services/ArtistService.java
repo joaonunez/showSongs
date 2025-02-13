@@ -1,8 +1,8 @@
 package com.example.app.services;
-
 import java.util.List;
-import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.example.app.models.Artist;
@@ -17,17 +17,22 @@ public class ArtistService {
         this.artistRepository = artistRepository;
     }
 
-    public List<Artist> getAllArtists() {
-        return artistRepository.findAll();
+    //Servicio actualizado para paginar a los artistas
+    public Page<Artist> getArtistsPaginated(int page, int size) {
+        return artistRepository.findAllByOrderByFirstNameAsc(PageRequest.of(page,size));
     }
     
     public Artist getArtistById(Long id) {
-        Optional<Artist> artist = artistRepository.findById(id);
-        return artist.orElse(null);
+        return artistRepository.findById(id).orElse(null);
     }
 
     public Artist addArtist(Artist artist) {
         return artistRepository.save(artist);
     }
+    //para obtener todos los artistas en orden ascedente por nombre
+    public List<Artist> getAllArtistsForComboBox() {
+        return artistRepository.findAllByOrderByFirstNameAsc();
+    }
+    
 
 }
