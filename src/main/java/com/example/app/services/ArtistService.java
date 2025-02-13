@@ -10,6 +10,7 @@ import com.example.app.repositories.ArtistRepository;
 
 @Service
 public class ArtistService {
+
     private final ArtistRepository artistRepository;
 
     public ArtistService(ArtistRepository artistRepository) {

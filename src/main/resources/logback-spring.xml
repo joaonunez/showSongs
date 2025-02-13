@@ -1,0 +1,26 @@
+<configuration>
+    <!-- Define un appender de consola -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Envuelve el appender de consola en un appender asíncrono -->
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="CONSOLE" />
+        <!-- Opcional: configura el tamaño del buffer -->
+        <queueSize>500</queueSize>
+        <!-- Puedes configurar otras propiedades según lo requieras -->
+    </appender>
+
+    <!-- Define el log level global -->
+    <root level="WARN">
+        <appender-ref ref="ASYNC" />
+    </root>
+
+    <!-- Configura log levels específicos si lo deseas -->
+    <logger name="org.springframework" level="WARN" />
+    <logger name="org.hibernate" level="ERROR" />
+    <logger name="com.example.app" level="INFO" />
+</configuration>
