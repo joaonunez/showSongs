@@ -88,6 +88,8 @@ public class SongController {
             return "redirect:/songs";
         }
         model.addAttribute("song", song);
+        //para traer todos los artistas al combobox del formulario editar cancion
+        model.addAttribute("artists", artistService.getAllArtistsForComboBox());
         return "editSong.jsp";
     }
 
