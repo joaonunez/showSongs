@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Agregar Canci�n</title>
+    <title>Add Song</title>
 </head>
 <body>
     <h1>ADD SONG</h1>
