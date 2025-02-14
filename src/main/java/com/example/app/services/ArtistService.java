@@ -38,6 +38,12 @@ public class ArtistService {
     public Artist updateArtist(Artist artist){
         return artistRepository.save(artist);
     }
+
+    
+    //metodo para eliminar artista
+    public void deleteArtist(Long id){
+        artistRepository.deleteById(id);
+    }
     
 
 }
