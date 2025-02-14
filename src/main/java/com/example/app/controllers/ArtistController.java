@@ -100,9 +100,17 @@ public class ArtistController {
         return "redirect:/artists";
     }
 
+    //definicion del endpoint
     @DeleteMapping("artists/delete/{id}")
-    public String processDeleteArtist(@PathVariable Long id){
-        artistService.deleteArtist(id);
+    //parametros del metodo y reditrect atributes es para guardar mensajes temporalmente 
+    public String processDeleteArtist(@PathVariable Long id, RedirectAttributes redirectAttributes){
+        try{
+            artistService.deleteArtist(id);
+            redirectAttributes.addFlashAttribute("success", "Artista eliminado correctamente");
+        } catch(IllegalStateException e){
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+        }
+        
         return "redirect:/artists";
     }
 

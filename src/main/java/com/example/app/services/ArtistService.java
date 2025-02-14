@@ -39,10 +39,19 @@ public class ArtistService {
         return artistRepository.save(artist);
     }
 
-    
-    //metodo para eliminar artista
+
+    //metodo para eliminar artista con verificacion incluida para que 
+    //no borre todas 
+    //las canciones de golpe
     public void deleteArtist(Long id){
-        artistRepository.deleteById(id);
+        Artist artist = artistRepository.findById(id).orElse(null);
+        //preguntamos si artista no es null u ademas al llamar a los getter de songs, obtenemos null o vacio
+        if(artist != null && (artist.getSongs() == null || artist.getSongs().isEmpty())){
+        //entonces procederemos con un bloque de codigo si estas 2 condiciones se cumplen
+            artistRepository.deleteById(id);
+        } else{
+            throw new IllegalStateException("No se puedele eliminar artista con canciones asociadas");
+        }
     }
     
 
