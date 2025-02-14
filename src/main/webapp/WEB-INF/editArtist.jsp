@@ -3,35 +3,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Edit Song</title>
+    <title>Edit Artist</title>
 </head>
 <body>
-    <h1>Edit Song</h1>
-    <form:form action="/songs/process/edit/${song.id}" modelAttribute="song" method="post">
+    <h1>Edit Artist</h1>
+    <form:form action="/artists/process/edit/${artist.id}" modelAttribute="artist" method="post">
         <input type="hidden" name="_method" value="put" />
         
-        <p>Title: <form:input path="title"/><form:errors path="title"/></p>
-        
-        <p>Select Artist: 
-            <select name="artist">
-                <c:forEach var="artist" items="${artists}">
-                    <option value="${artist.id}" 
-                        <c:if test="${song.artist != null && song.artist.id == artist.id}">selected="selected"</c:if>>
-                        ${artist.firstName} ${artist.lastName}
-                    </option>
-                </c:forEach>
-            </select>
-        </p>
-        
-        <form:errors path="artist"/>
-        
-        <p>Album: <form:input path="album"/><form:errors path="album"/></p>
-        <p>Genre: <form:input path="gender"/><form:errors path="gender"/></p>
-        <p>Language: <form:input path="language"/><form:errors path="language"/></p>
-        
+        <p>First Name: <form:input path="firstName"/><form:errors path="firstName"/></p>
+        <p>Last Name: <form:input path="lastName"/><form:errors path="lastName"/></p>
+        <p>Biography: <form:input path="biography"/><form:errors path="biography"/></p>
         <input type="submit" value="Update Song"/>
     </form:form>
     
-    <a href="/songs">Back to song list</a>
+    <a href="/artists">Back to song list</a>
 </body>
 </html>

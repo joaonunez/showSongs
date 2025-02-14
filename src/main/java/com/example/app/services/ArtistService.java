@@ -33,6 +33,11 @@ public class ArtistService {
     public List<Artist> getAllArtistsForComboBox() {
         return artistRepository.findAllByOrderByFirstNameAsc();
     }
+
+    //metodo para actualizar el artista sus datos personales al menos
+    public Artist updateArtist(Artist artist){
+        return artistRepository.save(artist);
+    }
     
 
 }
