@@ -3,16 +3,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ADD ARTIST</title>
+    <title>Add Artist</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
-<body>
-    <h1>ADD SONG</h1>
-    <form:form action="/artists/process/add" modelAttribute="artist" method="post">
-        <p>Name: <form:input path="firstName"/><form:errors path="firstName"/></p>
-		<p>Last Name: <form:input path="lastName"/><form:errors path="lastName"/></p>
-        <p>Biography: <form:input path="biography"/><form:errors path="biography"/></p>
-        <input type="submit" value="Add Artist"/>
-    </form:form>
-    <a href="/artists">Back to artist list</a>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h1 class="text-primary mb-4">Add Artist</h1>
+
+        <form:form action="/artists/process/add" modelAttribute="artist" method="post" class="border p-4 rounded bg-white shadow">
+            <div class="mb-3">
+                <label class="form-label">First Name:</label>
+                <form:input path="firstName" class="form-control"/>
+                <form:errors path="firstName" class="text-danger"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Last Name:</label>
+                <form:input path="lastName" class="form-control"/>
+                <form:errors path="lastName" class="text-danger"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Biography:</label>
+                <form:input path="biography" class="form-control"/>
+                <form:errors path="biography" class="text-danger"/>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <input type="submit" class="btn btn-success" value="Add Artist"/>
+                <a href="/artists" class="btn btn-secondary">Back to Artist List</a>
+            </div>
+        </form:form>
+    </div>
 </body>
 </html>

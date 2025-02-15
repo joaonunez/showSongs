@@ -4,26 +4,51 @@
 <html>
 <head>
     <title>Add Song</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
-<body>
-    <h1>ADD SONG</h1>
-    <form:form action="/songs/process/add" modelAttribute="song" method="post">
-        <p>Title: <form:input path="title"/><form:errors path="title"/></p>
-       	<!-- Select para elegir el artista -->
-        <p>Select Artist: 
-            <form:select path="artist.id">
-                <c:forEach var="artist" items="${artists}">
-    		<option value="${artist.id}">${artist.firstName} ${artist.lastName}</option>
-				</c:forEach>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h1 class="text-primary mb-4">Add Song</h1>
 
-            </form:select>
-        </p>
+        <form:form action="/songs/process/add" modelAttribute="song" method="post" class="border p-4 rounded bg-white shadow">
+            <div class="mb-3">
+                <label class="form-label">Title:</label>
+                <form:input path="title" class="form-control"/>
+                <form:errors path="title" class="text-danger"/>
+            </div>
 
-        <p>Album: <form:input path="album"/><form:errors path="album"/></p>
-        <p>Genre: <form:input path="gender"/><form:errors path="gender"/></p>
-        <p>Language: <form:input path="language"/><form:errors path="language"/></p>
-        <input type="submit" value="Add Song"/>
-    </form:form>
-    <a href="/songs">Back to songs list</a>
+            <div class="mb-3">
+                <label class="form-label">Select Artist:</label>
+                <form:select path="artist.id" class="form-select">
+                    <c:forEach var="artist" items="${artists}">
+                        <option value="${artist.id}">${artist.firstName} ${artist.lastName}</option>
+                    </c:forEach>
+                </form:select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Album:</label>
+                <form:input path="album" class="form-control"/>
+                <form:errors path="album" class="text-danger"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Genre:</label>
+                <form:input path="gender" class="form-control"/>
+                <form:errors path="gender" class="text-danger"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Language:</label>
+                <form:input path="language" class="form-control"/>
+                <form:errors path="language" class="text-danger"/>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <input type="submit" class="btn btn-success" value="Add Song"/>
+                <a href="/songs" class="btn btn-secondary">Back to Songs List</a>
+            </div>
+        </form:form>
+    </div>
 </body>
 </html>

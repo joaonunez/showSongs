@@ -3,47 +3,62 @@
 <html>
   <head>
     <title>Artist List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   </head>
-  <body>
-    <a href="/songs">
-      <button>View songs</button>
-    </a>
-    <h1>Artist List</h1>
-    <c:if test="${not empty error}">
-      <div style="color: red">${error}</div>
-    </c:if>
+  <body class="bg-light">
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between mb-4">
+            <h1 class="text-primary">Artist List</h1>
+            <a href="/songs" class="btn btn-secondary">View Songs</a>
+        </div>
 
-    <c:if test="${not empty success}">
-      <div style="color: green">${success}</div>
-    </c:if>
+        <c:if test="${not empty error}">
+            <div class="alert alert-danger">${error}</div>
+        </c:if>
 
-    <table border="1">
-      <tr>
-        <th>Title</th>
-        <th>Detail</th>
-      </tr>
-      <c:forEach var="artist" items="${artistsPage.content}">
-        <tr>
-          <td>${artist.firstName} ${artist.lastName}</td>
-          <td><a href="/artists/detail/${artist.id}">Detail</a></td>
-        </tr>
-      </c:forEach>
-    </table>
+        <c:if test="${not empty success}">
+            <div class="alert alert-success">${success}</div>
+        </c:if>
 
-    <div>
-      <c:if test="${currentPage > 0}">
-        <a href="/artists?page=${currentPage - 1}&size=5">Previous</a>
-      </c:if>
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Detail</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="artist" items="${artistsPage.content}">
+                    <tr>
+                        <td>${artist.firstName} ${artist.lastName}</td>
+                        <td>
+                            <a href="/artists/detail/${artist.id}" class="btn btn-primary btn-sm">View</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
 
-      Page ${currentPage + 1} of ${totalPages}
+        <!-- Pagination -->
+        <nav aria-label="Page navigation" class="my-4">
+            <ul class="pagination justify-content-center">
+                <c:if test="${currentPage > 0}">
+                    <li class="page-item">
+                        <a class="page-link" href="/artists?page=${currentPage - 1}&size=5">Previous</a>
+                    </li>
+                </c:if>
+                <li class="page-item disabled">
+                    <span class="page-link">Page ${currentPage + 1} of ${totalPages}</span>
+                </li>
+                <c:if test="${currentPage + 1 < totalPages}">
+                    <li class="page-item">
+                        <a class="page-link" href="/artists?page=${currentPage + 1}&size=5">Next</a>
+                    </li>
+                </c:if>
+            </ul>
+        </nav>
 
-      <c:if test="${currentPage + 1 < totalPages}">
-        <a href="/artists?page=${currentPage + 1}&size=5">Next</a>
-      </c:if>
+        <a href="/artists/form/add" class="btn btn-success">Add Artist</a>
     </div>
-
-    <a href="/artists/form/add">
-      <button>Add Artist</button>
-    </a>
   </body>
 </html>
