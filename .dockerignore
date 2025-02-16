@@ -1,7 +1,23 @@
+# Archivos de Maven y Java
 target/
-*.iml
+*.jar
+*.war
 *.class
 *.log
-.env
+
+# Archivos de configuración local
+*.env
+*.properties
+
+# Archivos y carpetas de IDE
 .idea/
-*.jar
+.vscode/
+*.iml
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos Docker
+docker-compose.yml
+Dockerfile
