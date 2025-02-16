@@ -87,7 +87,7 @@ public class ArtistController {
         return "editArtist.jsp";
     }
 
-    @PutMapping("artists/process/edit/{id}")
+    @PutMapping("/artists/process/edit/{id}")
     public String processEditArtist(
             @PathVariable Long id,
             @Valid @ModelAttribute("artist") Artist artist,
@@ -101,7 +101,7 @@ public class ArtistController {
     }
 
     //definicion del endpoint
-    @DeleteMapping("artists/delete/{id}")
+    @DeleteMapping("/artists/delete/{id}")
     //parametros del metodo y reditrect atributes es para guardar mensajes temporalmente 
     public String processDeleteArtist(@PathVariable Long id, RedirectAttributes redirectAttributes){
         try{
