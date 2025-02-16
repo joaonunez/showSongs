@@ -83,14 +83,14 @@
         <finalName>app</finalName>
         <plugins>
             <!-- Plugin de Spring Boot -->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>3.2.0</version>
-                <configuration>
-                    <mainClass>com.example.app.SongsApplication</mainClass>
-                </configuration>
-            </plugin>
+           <plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <version>3.2.0</version>
+    <configuration>
+        <mainClass>com.example.app.SongsAndArtistsApiRest</mainClass>
+    </configuration>
+</plugin>
 
             <!-- Plugin de Compilación -->
             <plugin>
