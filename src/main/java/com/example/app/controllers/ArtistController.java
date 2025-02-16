@@ -72,7 +72,7 @@ public class ArtistController {
             return "addArtist.jsp";
         }
         artistService.addArtist(artist);
-        redirectAttributes.addFlashAttribute("success", "Canción agregada con éxito.");
+        redirectAttributes.addFlashAttribute("success", "Artista agregado con éxito.");
         return "redirect:/artists";
     }
 

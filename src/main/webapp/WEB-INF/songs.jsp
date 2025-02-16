@@ -14,6 +14,13 @@
         <h1 class="text-primary">Song List</h1>
         <a href="/artists" class="btn btn-secondary">View Artists</a>
     </div>
+    <!-- Alerts -->
+    <c:if test="${not empty error}">
+        <div class="alert alert-danger">${error}</div>
+    </c:if>
+    <c:if test="${not empty success}">
+        <div class="alert alert-success">${success}</div>
+    </c:if>
 
     <table class="table table-bordered table-hover">
         <thead class="table-dark">

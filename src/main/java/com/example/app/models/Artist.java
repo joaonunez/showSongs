@@ -36,6 +36,7 @@ public class Artist {
     
 
     @Temporal(TemporalType.TIMESTAMP)
+	@Column(updatable = false)
     private Date createdAt;
 
     @Temporal(TemporalType.TIMESTAMP)

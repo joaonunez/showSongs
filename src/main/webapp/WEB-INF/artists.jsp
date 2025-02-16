@@ -19,7 +19,6 @@
             </div>
         </div>
 
-        <!-- Alerts -->
         <c:if test="${not empty error}">
             <div class="alert alert-danger">${error}</div>
         </c:if>
