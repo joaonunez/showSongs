@@ -34,7 +34,7 @@ public class SongController {
 
     @GetMapping("/")
     public String home() {
-        return "index.jsp";
+        return "index";
     }
 
     @GetMapping("/songs")
