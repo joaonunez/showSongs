@@ -5,12 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Song List</title>
-    <!-- Bootstrap 5.3.3 CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
 <body class="bg-light">
 
-<div class="container mt-4">
+<div class="container mt-4 col-xxl-4 col-md-6 col-lg-7 col-xl-5 col-sm-6">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="text-primary">Song List</h1>
         <a href="/artists" class="btn btn-secondary">View Artists</a>
@@ -37,7 +36,6 @@
         </tbody>
     </table>
 
-    <!-- Pagination -->
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
             <c:if test="${currentPage > 0}">
@@ -65,7 +63,6 @@
     </div>
 </div>
 
-<!-- Bootstrap JS Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
