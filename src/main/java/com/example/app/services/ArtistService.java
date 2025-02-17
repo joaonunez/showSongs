@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.app.models.Artist;
 import com.example.app.repositories.ArtistRepository;
@@ -21,9 +22,16 @@ public class ArtistService {
     public Page<Artist> getArtistsPaginated(int page, int size) {
         return artistRepository.findAllByOrderByFirstNameAsc(PageRequest.of(page,size));
     }
-    
+
+    //para mantener la asesion acrtiva mientras se consulta o elimina el artista
+    @Transactional(readOnly = true)
     public Artist getArtistById(Long id) {
-        return artistRepository.findById(id).orElse(null);
+        Artist artist = artistRepository.findById(id).orElse(null);
+        if (artist != null) {
+            // Forzar la carga de la lista de canciones
+            artist.getSongs().size();
+        }
+        return artist;
     }
 
     public Artist addArtist(Artist artist) {
@@ -43,14 +51,19 @@ public class ArtistService {
     //metodo para eliminar artista con verificacion incluida para que 
     //no borre todas 
     //las canciones de golpe
-    public void deleteArtist(Long id){
+    @Transactional
+    public void deleteArtist(Long id) {
         Artist artist = artistRepository.findById(id).orElse(null);
-        //preguntamos si artista no es null u ademas al llamar a los getter de songs, obtenemos null o vacio
-        if(artist != null && (artist.getSongs() == null || artist.getSongs().isEmpty())){
-        //entonces procederemos con un bloque de codigo si estas 2 condiciones se cumplen
-            artistRepository.deleteById(id);
-        } else{
-            throw new IllegalStateException("No se puedele eliminar artista con canciones asociadas");
+        if (artist != null) {
+            // Forzar la carga de canciones antes de verificar
+            artist.getSongs().size();
+            if (artist.getSongs().isEmpty()) {
+                artistRepository.deleteById(id);
+            } else {
+                throw new IllegalStateException("No se puede eliminar artista con canciones asociadas");
+            }
+        } else {
+            throw new IllegalStateException("Artista no encontrado");
         }
     }
     
