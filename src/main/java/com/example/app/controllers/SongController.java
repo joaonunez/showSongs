@@ -49,7 +49,7 @@ public class SongController {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", songsPage.getTotalPages());
 
-        return "songs.jsp";
+        return "songs";
     }
 
     @GetMapping("/songs/detail/{id}")
@@ -59,21 +59,21 @@ public class SongController {
             return "redirect:/songs";
         }
         model.addAttribute("song", song);
-        return "songDetail.jsp";
+        return "songDetail";
     }
 
     @GetMapping("/songs/form/add")
     public String formAddSong(Model model) {
         model.addAttribute("song", new Song()); // Inicializa una nueva canción
         model.addAttribute("artists", artistService.getAllArtistsForComboBox()); // Pasa la lista de artistas al JSP
-        return "addSong.jsp";
+        return "addSong";
     }
 
     @PostMapping("/songs/process/add")
     public String processAddSong(@Valid @ModelAttribute("song") Song song, BindingResult result,
             RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
-            return "addSong.jsp";
+            return "addSong";
         }
         songService.addSong(song);
         redirectAttributes.addFlashAttribute("success", "Canción agregada con éxito.");
@@ -89,14 +89,14 @@ public class SongController {
         model.addAttribute("song", song);
         // para traer todos los artistas al combobox del formulario editar cancion
         model.addAttribute("artists", artistService.getAllArtistsForComboBox());
-        return "editSong.jsp";
+        return "editSong";
     }
 
     @PutMapping("/songs/process/edit/{id}")
     public String processEditSong(@PathVariable Long id, @Valid @ModelAttribute("song") Song song,
             BindingResult result) {
         if (result.hasErrors()) {
-            return "editSong.jsp";
+            return "editSong";
         }
         song.setId(id);
         songService.updateSong(song);

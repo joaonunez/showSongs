@@ -46,7 +46,7 @@ public class ArtistController {
         model.addAttribute("artistsPage", artistsPage);
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", artistsPage.getTotalPages());
-        return "artists.jsp";
+        return "artists";
     }
 
     @GetMapping("/artists/detail/{id}")
@@ -56,20 +56,20 @@ public class ArtistController {
             return "redirect:/artists";
         }
         model.addAttribute("artist", artist);
-        return "artistDetail.jsp";
+        return "artistDetail";
     }
 
     @GetMapping("/artists/form/add")
     public String formAddArtist(Model model) {
         model.addAttribute("artist", new Artist());
-        return "addArtist.jsp";
+        return "addArtist";
     }
 
     @PostMapping("/artists/process/add")
     public String processAddArtist(@Valid @ModelAttribute("artist") Artist artist, BindingResult result,
             RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
-            return "addArtist.jsp";
+            return "addArtist";
         }
         artistService.addArtist(artist);
         redirectAttributes.addFlashAttribute("success", "Artista agregado con éxito.");
@@ -84,7 +84,7 @@ public class ArtistController {
             return "redirect:/artists";
         }
         model.addAttribute("artist", artist);
-        return "editArtist.jsp";
+        return "editArtist";
     }
 
     @PutMapping("/artists/process/edit/{id}")
@@ -93,7 +93,7 @@ public class ArtistController {
             @Valid @ModelAttribute("artist") Artist artist,
             BindingResult result) {
         if (result.hasErrors()) {
-            return "editSong.jsp";
+            return "editSong";
         }
         artist.setId(id);
         artistService.updateArtist(artist);
